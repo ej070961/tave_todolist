@@ -1,5 +1,5 @@
 
-import { findUser, saveUser } from '../firebase_user';
+import { findUser, saveUser } from '../firebase/firebase_user';
 
 //Actions
 const SIGN_IN = 'user_reducer/signin';
@@ -18,9 +18,9 @@ export function signInUser(uid){
 
 };
 
-export async function signUpUser(userdata){
+export function signUpUser(userdata){
 
-    const result = await saveUser(userdata);
+    const result = saveUser(userdata);
     console.log(result);
 
     return{

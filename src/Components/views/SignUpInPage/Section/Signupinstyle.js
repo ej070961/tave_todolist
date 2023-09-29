@@ -7,6 +7,12 @@ export const SignLayout = styled.div`
 `
 export const ImgContainer = styled.div`
     width: 60%;
+
+    @media (max-width: 830px) {
+
+          display: none;
+        
+      }
 `
 
 export const FormContainer = styled.div`
@@ -17,8 +23,8 @@ export const FormContainer = styled.div`
 
     .title{
         color: #0061A8;
-        font-family: Actor;
-        font-size: 48px;
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 2.5rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -26,7 +32,7 @@ export const FormContainer = styled.div`
     }
     .small{
         color: #000;
-        font-family: Actor;
+        font-family: 'Noto Sans', sans-serif;
         font-size: 1.3rem;
         font-style: normal;
         font-weight: 400;
@@ -34,13 +40,17 @@ export const FormContainer = styled.div`
     }
     span{
         color: #1A237E;
-        font-family: Abhaya Libre Medium;
+        font-family: 'Noto Sans', sans-serif;
         font-size: 1.2rem;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
         padding-left: 10px;
         cursor: pointer;
+    }
+
+    @media (max-width: 830px) {
+        width:100%;
     }
 
 `
@@ -54,11 +64,11 @@ export const Googlebtn  = styled.button`
     display: flex;
     justify-content: center;  
     align-items: center;
-    font-family: Actor;
-    font-size: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.3rem;
     opacity: 0.8;
     border-radius: 10px;
-    border: 1px solid #000;
+    border: 1px solid #454C53;
     background: #FFF;
     margin: 0.8rem;
 
@@ -73,15 +83,15 @@ export const InputContainer = styled.input`
     width: 20rem;
     height: 2.6rem;
     border-radius: 10px;
-    border: 1px solid #000;
+    border: 2px solid #454C53;
     background: #FFF;
     margin: 10px;
-    font-family: Actor;
-    font-size: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.3rem;
 `
 export const InputLabel = styled.label`
     color: #0061A8;
-    font-family: Actor;
+    font-family: 'Noto Sans', sans-serif;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 500;
@@ -96,8 +106,9 @@ export const SubmitBtn = styled.button`
     border-radius: 10px;
     background: #0061A8;
     color: #FFF;
-    font-family: Actor;
-    font-size: 20px;
+    border: none;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.3rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

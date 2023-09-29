@@ -1,7 +1,7 @@
 import {firestore} from './firebase'
 
 export async function findUser(uid){
-    const users = firestore.collection("users");
+    const users = firestore.collection("users"); 
 
     try {
         const snapshot = await users.where("Uid", "==", uid).get();
