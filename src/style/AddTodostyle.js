@@ -45,6 +45,11 @@ export const ContentInput = styled.input`
     border-radius: 10px;
     border: 1px solid #C1C1C1;
     background: #FFF;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+
 `
 export const SubmitBtn = styled.button`
     height: 2rem;

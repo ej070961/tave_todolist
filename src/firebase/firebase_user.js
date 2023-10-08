@@ -7,11 +7,12 @@ export async function findUser(uid){
         const snapshot = await users.where("Uid", "==", uid).get();
     
         if (snapshot.size > 0) {
-          console.log(snapshot);
-          return true;
+          const userData = snapshot.docs.map(doc => doc.data())[0]
+          console.log(userData);
+          return userData;
         } else {
             console.log("user 정보가 저장되어 있지 않습니다")
-          return false;
+            return false;
         }
       } catch (error) {
         console.log(error);
@@ -25,7 +26,6 @@ export async function saveUser(userdata){
     try{
         await users.doc(userdata.Uid).set(userdata)
         return "success"
-        
     }catch(error){
         console.log(error);
         throw error;

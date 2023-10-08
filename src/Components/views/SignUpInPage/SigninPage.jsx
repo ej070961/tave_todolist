@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
-import * as s from './Section/Signupinstyle';
+import * as s from '../../../style/Signupinstyle';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { signInWithEmailAndPassword, GoogleAuthProvider, getAuth, signInWithPopup} from 'firebase/auth';
 import { signInUser } from '../../../_redux/user';
+import auth from '../../../hoc/auth'
 function SigninPage() {
 
   const [Email, setEmail] = useState();
@@ -66,6 +67,7 @@ function SigninPage() {
         alert('회원가입을 진행해주세요')
         navigate('/signup')
       }else{
+        localStorage.setItem('isLoggedIn', true); //로그인 시 로컬 스토리지에 저장 
         navigate('/');
       }
     }catch(error){
@@ -95,4 +97,4 @@ function SigninPage() {
   )
 }
 
-export default SigninPage;
+export default auth(SigninPage, false);

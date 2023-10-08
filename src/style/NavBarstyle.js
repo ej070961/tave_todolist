@@ -14,7 +14,7 @@ export const NavLayout = styled.nav`
   p, a{
     color: #FFF;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

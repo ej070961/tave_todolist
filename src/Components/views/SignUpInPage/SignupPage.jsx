@@ -1,11 +1,12 @@
-import React,{useState} from 'react'
-import * as s from './Section/Signupinstyle';
+import React,{useEffect, useState} from 'react'
+import * as s from '../../../style/Signupinstyle';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup} from 'firebase/auth';
 import { signUpUser } from '../../../_redux/user';
 import { findUser } from '../../../firebase/firebase_user';
+import auth from '../../../hoc/auth';
 function SignupPage() {
 
   const [Visible, setVisible] = useState(false);
@@ -29,8 +30,8 @@ function SignupPage() {
             setUserName(value);
             break;
         case 'email':
-            setEmail(value);
             const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+            setEmail(value);
             setValidEmail(emailPattern.test(Email))
             console.log(ValidEmail);
             break;
@@ -68,7 +69,8 @@ function SignupPage() {
 
       const response = await findUser(uid)
       console.log(response);
-      if(response.payload === false){
+
+      if(response === false){
         setUserName(data.user.displayName);
         setEmail(data.user.email);
         setUid(data.user.uid);
@@ -125,6 +127,7 @@ const onSubmit = async(e)=>{
     const response = await dispatch(signUpUser(variable))
     console.log(response);
     if(response.payload === "success"){
+      localStorage.setItem('isLoggedIn', true); //로그인 시 로컬 스토리지에 저장 
       navigate('/')
     }
   }catch(error){
@@ -173,4 +176,4 @@ const onSubmit = async(e)=>{
   )
 }
 
-export default SignupPage;
+export default auth(SignupPage, false);
