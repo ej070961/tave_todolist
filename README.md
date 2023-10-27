@@ -19,7 +19,7 @@ NPM or Yarn
 설치하기
 이 레포지토리를 클론합니다.
 ```
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/ej070961/tave_todolist.git
 ```
 
 NPM 패키지를 설치합니다.
