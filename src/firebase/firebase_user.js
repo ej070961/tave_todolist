@@ -8,7 +8,6 @@ export async function findUser(uid){
     
         if (snapshot.size > 0) {
           const userData = snapshot.docs.map(doc => doc.data())[0]
-          console.log(userData);
           return userData;
         } else {
             console.log("user 정보가 저장되어 있지 않습니다")

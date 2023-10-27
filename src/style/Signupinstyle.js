@@ -77,6 +77,10 @@ export const Googlebtn  = styled.button`
         background: rgb(247,247,247);
           color: black;
     }
+
+    @media (max-width: 20rem) {
+        width:90%;
+    }
 `
 export const InputContainer = styled.input`
     color: black;
@@ -88,6 +92,10 @@ export const InputContainer = styled.input`
     margin: 10px;
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.3rem;
+
+    @media (max-width: 20rem) {
+        width:90%;
+    }
 `
 export const InputLabel = styled.label`
     color: #0061A8;

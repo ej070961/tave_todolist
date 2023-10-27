@@ -58,7 +58,7 @@ export default function (state = {}, action){
         case SIGN_UP:
             return {...state}
         case LOGOUT:
-            return {...state, userData: action.payload}
+            return {...state, userData: []}
         case AUTH:
             return {...state, userData: action.payload}
         default:

@@ -10,8 +10,7 @@ export const NavLayout = styled.nav`
   display: flex; /* Use flexbox to horizontally align items */
   flex-direction: inline;
   justify-content: space-between;
-
-  p, a{
+  p{
     color: #FFF;
     font-family: 'Noto Sans', sans-serif;
     font-size: 2rem;
@@ -19,6 +18,23 @@ export const NavLayout = styled.nav`
     font-weight: 400;
     line-height: normal;
     margin: 1rem;
+
+    @media (max-width: 400px) {
+      font-size: 1.7rem;
+  }
+  }
+  a{
+    color: #FFF;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 1rem;
+    cursor:pointer;
+    @media (max-width: 400px) {
+      font-size: 1.7rem;
+  }
   }
 
 `

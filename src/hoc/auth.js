@@ -25,7 +25,7 @@ export default function (SpecificComponent, option){
            
             onAuthStateChanged(auth, (userlogined)=>{
                 if (userlogined){   
-                        if(option===false && loggedin===true){
+                        if(!option&& loggedin){
                                 console.log("Logged in")
                                 navigate('/')
                             

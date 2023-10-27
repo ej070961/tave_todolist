@@ -6,21 +6,64 @@ export const MainpageLayout = styled.div`
     height: 100vh;
     opacity: 0.9;
     background: #E8EBED;
+
+    @media (max-width: 1340px) {
+        /* 화면 너비가 1220px 이하일 때 적용될 스타일 */
+        height: 100%;
+    }
+
+
+
+
 `
 
 export const TodoTemplate = styled.div`
     width: 70%;
-    height: 80%;
+    height: 35rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 0 auto;
     margin-top: 3rem;
+
+    @media (max-width: 1340px) {
+        /* 화면 너비가 1220px 이하일 때 적용될 스타일 */
+        flex-direction: column;
+        height: 50rem;
+        align-items: center;
+      }
+
+
+    @media (min-height: 840px) {
+    /* 화면 너비가 1220px 이하일 때 적용될 스타일 */
+        width: 50%;
+        margin-top: 5rem;
+    }
+
+    @media (max-width: 420px) {
+        width: 100%;
+    }
+
+
+ 
+`
+
+export const leftContainer = styled.div`
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 1340px) {
+        /* 화면 너비가 1220px 이하일 때 적용될 스타일 */
+        width: 100%;
+    }
 `
 export const TodoLayout = styled.div`
     display: flex;
     flex-direction: column;
-    width: 32rem;
+    width: 30rem;
     height: 98%;
     margin: 1rem;
     border-radius: 15px;
@@ -40,6 +83,10 @@ export const TodoLayout = styled.div`
         background: #C1C1C1;
         border: none;
     }
+
+    @media (max-width: 420px) {
+        width: 90%;
+    }
 `
 
 export const TodoContainer = styled.div`
@@ -54,19 +101,23 @@ export const TodoContainer = styled.div`
     align-items: center;
     
     .checkbox{
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 2rem;
+        height: 2rem;
         color: #454C53;
         margin: 1rem;
     }
     .content{
+        width: 80%;
         color: #1B1D1F;
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 1.2rem;
         font-style: normal;
         font-weight: 400;
-        margin: 1rem;
+
+        list-style:none;
+    
     }
+
 `
 
 export const AddButton = styled.button`
@@ -81,10 +132,10 @@ export const AddButton = styled.button`
     align-items: center;
 
     .add_icon{
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 2rem;
+        height: 2rem;
         color: #454C53;
-        margin: 0.7rem;
+        margin: 0.6rem;
     }
 
     .add_content{
@@ -93,7 +144,7 @@ export const AddButton = styled.button`
         font-size: 1.2rem;
         font-style: normal;
         font-weight: 400;
-        margin: 1rem;
+        margin: 0.5rem;
     }
 
 `

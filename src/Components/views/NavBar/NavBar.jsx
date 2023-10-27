@@ -13,7 +13,7 @@ function NavBar() {
   const handleLogout = () =>{
     signOut(auth)
     .then(() => {
-      dispatch(logoutUser())
+      dispatch(logoutUser());
       localStorage.removeItem('isLoggedIn'); //로그아웃 시 로컬 스토리지에서 제거 
       navigate('/signin')}) // logout successful
     .catch((error) => {

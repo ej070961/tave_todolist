@@ -16,16 +16,23 @@ export const ModalLayout = styled.div`
     align-items: center;
 
     .modaltitle{
+        width: 95%;
         color: #1B1D1F;
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 1.4rem;
         font-style: normal;
         font-weight: 400;
         margin: 0.4rem;
+        align: center;
         margin-left: 15rem;
+
+        @media (max-width: 420px) {
+            font-size: 1.2rem;
+            margin-left: 6rem;
+        }
     }
     hr{
-        width: 40rem;
+        width: 100%;
         height: 0.08rem;
         background: #C1C1C1;
         border: none;
@@ -36,6 +43,11 @@ export const ModalLayout = styled.div`
         width: 2rem;
         height: 2rem;
         color: #1B1D1F;
+    }
+
+    @media (max-width: 420px) {
+        width: 90%;
+
     }
 `
 export const ContentInput = styled.input`

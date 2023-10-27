@@ -48,6 +48,7 @@ function SigninPage() {
           alert('회원가입을 진행해주세요')
           navigate('/signup')
         }else{
+          localStorage.setItem('isLoggedIn', true); //로그인 시 로컬 스토리지에 저장 
           navigate('/');
         }
       }

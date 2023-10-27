@@ -2,7 +2,6 @@ import React,{useEffect, useState} from 'react'
 import * as s from '../../../style/Signupinstyle';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup} from 'firebase/auth';
 import { signUpUser } from '../../../_redux/user';
 import { findUser } from '../../../firebase/firebase_user';
@@ -17,9 +16,7 @@ function SignupPage() {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
-  const [ValidEmail, setValidEmail] = useState(true);
-  const [ValidPW, setValidPW] = useState(true);
-
+  const emailPattern = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -30,18 +27,10 @@ function SignupPage() {
             setUserName(value);
             break;
         case 'email':
-            const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
             setEmail(value);
-            setValidEmail(emailPattern.test(Email))
-            console.log(ValidEmail);
             break;
         case 'password':
             setPassword(value);
-            if(Password.length<6){
-              setValidPW(false);
-            }else{
-              setValidPW(true)
-            }
             break;
         case 'nickname':
             setNickname(value);
@@ -58,17 +47,15 @@ function SignupPage() {
 
   const handleGoogleSignUp = async (e) =>{
     e.preventDefault();
+
     const provider = new GoogleAuthProvider(); //Google 제공업체 객체의 인스턴스 생성 
     const auth = getAuth();
 
     try{
       const data = await signInWithPopup(auth, provider); //팝업창을 이용하여 로그인 과정 진행 (비동기 작업)
-      console.log(data);
       const uid = data.user.uid; //로그인 시 사용자의 id 필요 
-      console.log("uid : ",uid);
 
       const response = await findUser(uid)
-      console.log(response);
 
       if(response === false){
         setUserName(data.user.displayName);
@@ -85,17 +72,21 @@ function SignupPage() {
     catch(error){
       console.log(error);
     }
+  
 }
 
 const handleEmailSignUp = (e) => {
-  e.preventDefault();
+  if(!emailPattern.test(Email)|| (Password.length<6)){
+    alert('비밀번호 및 이메일 형식이 올바르지 않습니다')
+  }
+
+  if(emailPattern.test(Email)&& (Password.length>=6)){
   const auth = getAuth();
 
   createUserWithEmailAndPassword(auth, Email, Password)
   .then((userCredential)=>{
     //Signed in 
     const user = userCredential.user;
-    console.log(user);
     setEmail(user.email);
     setUid(user.uid);
 
@@ -112,6 +103,7 @@ const handleEmailSignUp = (e) => {
         console.log(error);
       }
   })
+  }
 }
 
 const onSubmit = async(e)=>{
@@ -150,10 +142,8 @@ const onSubmit = async(e)=>{
         </s.Googlebtn>
         <span className='or'>or</span>
         <s.InputContainer type="text" name="email" required placeholder='Email' value={Email} onChange={handleChange}/>
-        {!ValidEmail && <p>이메일 형식이 올바르지 않습니다.</p>}
         <s.InputContainer type="password" name="password" required placeholder="Password" value={Password} onChange={handleChange}/>
-        {!ValidPW && <p>비밀번호는 6자리 이상이어야 합니다.</p>}
-        <s.SubmitBtn onClick={handleEmailSignUp} disabled={!ValidEmail || !ValidPW}>Create Account</s.SubmitBtn>
+        <s.SubmitBtn onClick={handleEmailSignUp}>Create Account</s.SubmitBtn>
         <p className="small">Do you have an account? <span onClick={goLoginPage}>Login!</span></p>
         </s.FormContainer>
         :        

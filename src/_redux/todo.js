@@ -1,18 +1,19 @@
-import { saveTodo, findallTodo } from "../firebase/firebase_todo";
+import { saveTodo, findallTodo, updateCompleted, deleteItem } from "../firebase/firebase_todo";
 
 //Actions
 const ADD_TODO = 'todo_reducer/addtodo';
 const INITIALIZE_TODOS = 'todo_reducer/initializetodo'
-
+const COMPLETE_TODO = 'todo_reducer/completetodo'
+const DELETE_TODO = 'todo_reducer/deletetodo'
 // Action Creators
 export function addTodo(data){
     
-    saveTodo(data);
+    const todoData = saveTodo(data);
 
 
     return { 
         type: ADD_TODO,
-        payload: data
+        payload: todoData
     };
 
 };
@@ -31,6 +32,41 @@ export async function initializeTodo(data){
     }
     
 }
+
+export async function completeTodo(todoId, index, completed){
+    try{
+
+        updateCompleted(todoId, completed);
+        // console.log(todos);
+        return{
+            type: COMPLETE_TODO,
+            payload: {
+                index: index,
+                completed: completed
+            }
+        }
+    }catch(error){
+        console.error("Todo 데이터 업데이트 실패:", error);
+        throw error;
+    }
+    
+}
+
+export async function deleteTodo(todoId, index){
+    try{
+
+        deleteItem(todoId);
+        // console.log(todos);
+        return{
+            type: DELETE_TODO,
+            payload: todoId
+        }
+    }catch(error){
+        console.error("Todo 데이터 업데이트 실패:", error);
+        throw error;
+    }
+    
+}
    
 //Reducer
 
@@ -46,6 +82,18 @@ export default function (state = initialState, action){
             return { ...state, todos: newTodos };
         case INITIALIZE_TODOS:
             return {...state, todos: action.payload}
+        case COMPLETE_TODO:
+            const index = action.payload.index;
+            const updatedTodos = [...state.todos];
+            state.todos[index].Completed = action.payload.completed;
+            return {...state, todos: updatedTodos}
+
+        case DELETE_TODO:
+            const Todos = state.todos.filter(todo => todo.TodoId !== action.payload);
+            return {
+                ...state,
+                todos: Todos,
+              };
         default:
             return state;
     }
